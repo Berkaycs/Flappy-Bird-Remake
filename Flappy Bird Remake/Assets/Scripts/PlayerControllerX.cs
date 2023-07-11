@@ -1,16 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerControllerX : MonoBehaviour
 {
     private Rigidbody2D playerRb;
+    private GameManagerX gameManager;
+    private AudioX soundEffects;
+    public ParticleSystem destroyParticle;
+    private ParallaxEffectX backgroundSound;
+
     public float speedForce = 10;
+    public bool gameOver = true;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManagerX>();
+        soundEffects = GetComponent<AudioX>();
+        backgroundSound = GameObject.Find("Background").GetComponent<ParallaxEffectX>();
     }
 
     // Update is called once per frame
@@ -32,35 +42,61 @@ public class PlayerControllerX : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Block"))
         {
-            Destroy(gameObject);
+            Destroy(gameObject);           
+            destroyParticle.Play();
+            soundEffects.loseSound();
+            backgroundSound.background.Stop();
+            Debug.Log("Collided with the block");
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EUR"))
+        if (collision.gameObject.CompareTag("Trigger"))
         {
-            Destroy(collision);
+            soundEffects.triggerSound();
+            Debug.Log("Trigger has happened");
+            gameManager.AddScore(1);
         }
 
-        if (collision.CompareTag("USD"))
+        if (collision.gameObject.CompareTag("EUR"))
         {
-            Destroy(collision);
+            soundEffects.coinSound();
+            Destroy(collision.gameObject);
+            Debug.Log("Coin is triggered");
+            gameManager.AddScore(30);
         }
 
-        if (collision.CompareTag("GBP"))
+        if (collision.gameObject.CompareTag("USD"))
         {
-            Destroy(collision);
+            soundEffects.coinSound();
+            Destroy(collision.gameObject);
+            Debug.Log("Coin is triggered");
+            gameManager.AddScore(25);
         }
 
-        if (collision.CompareTag("UAH"))
+        if (collision.gameObject.CompareTag("GBP"))
         {
-            Destroy(collision);
+            soundEffects.coinSound();
+            Destroy(collision.gameObject);
+            Debug.Log("Coin is triggered");
+            gameManager.AddScore(35);
         }
 
-        if (collision.CompareTag("JPY"))
+        if (collision.gameObject.CompareTag("UAH"))
         {
-            Destroy(collision);
+            soundEffects.coinSound();
+            Destroy(collision.gameObject);
+            Debug.Log("Coin is triggered");
+            gameManager.AddScore(5);
+        }
+
+        if (collision.gameObject.CompareTag("JPY"))
+        {
+            soundEffects.coinSound();
+            Destroy(collision.gameObject);
+            Debug.Log("Coin is triggered");
+            gameManager.AddScore(3);
         }
     }
 }
