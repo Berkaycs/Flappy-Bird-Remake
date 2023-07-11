@@ -14,14 +14,13 @@ public class SpawnManagerX : MonoBehaviour
     private int coinIndex;
 
     private float startDelayB = 1.5f;
-    private float repeatWidthB = 1.5f;
-
     private float startDelayC = 5f;
 
     // Start is called before the first frame update
     void Start()
     {
         float repeatWidthC = Random.Range(8,15);
+        float repeatWidthB = Random.Range(0.5f,2.5f);
         InvokeRepeating("spawnBlock", startDelayB, repeatWidthB);
         InvokeRepeating("spawnCoin", startDelayC, repeatWidthC);
     }
@@ -35,7 +34,7 @@ public class SpawnManagerX : MonoBehaviour
     void spawnBlock()
     {
         blockIndex = Random.Range(0, 4);
-        spawnPositionBlock = new Vector2(5.5f,1);
+        spawnPositionBlock = new Vector2(14,1);
         Instantiate(blocks[blockIndex], spawnPositionBlock, blocks[blockIndex].transform.rotation);
     }
 

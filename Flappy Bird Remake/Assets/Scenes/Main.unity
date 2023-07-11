@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 755329425}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -851,7 +851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 488988, guid: 56f05323d192c5545a16f4c206783b3b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.65
+      value: 2.93
       objectReference: {fileID: 0}
     - target: {fileID: 488988, guid: 56f05323d192c5545a16f4c206783b3b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -889,10 +889,6 @@ PrefabInstance:
       propertyPath: source
       value: 
       objectReference: {fileID: 1263177378}
-    - target: {fileID: 1844697743915675572, guid: 56f05323d192c5545a16f4c206783b3b, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1191,7 +1187,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3f80a37231e51d544a350ff23b684e2d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.411
+  m_Volume: 0.494
   m_Pitch: 1
   Loop: 1
   Mute: 0

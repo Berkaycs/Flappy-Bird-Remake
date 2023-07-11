@@ -11,6 +11,8 @@ TagManager:
   - USD
   - JPY
   - UAH
+  - Particle
+  - Ground
   layers:
   - Default
   - TransparentFX

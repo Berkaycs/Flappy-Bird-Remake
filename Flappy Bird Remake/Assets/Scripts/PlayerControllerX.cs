@@ -12,6 +12,7 @@ public class PlayerControllerX : MonoBehaviour
     private ParallaxEffectX backgroundSound;
 
     public float speedForce = 10;
+    private float topBound = 5;
     public bool gameOver = true;
 
     // Start is called before the first frame update
@@ -21,11 +22,21 @@ public class PlayerControllerX : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManagerX>();
         soundEffects = GetComponent<AudioX>();
         backgroundSound = GameObject.Find("Background").GetComponent<ParallaxEffectX>();
+        destroyParticle = GameObject.Find("Destroy").GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y > topBound)
+        {
+            Debug.Log("Top bound is exceed");
+            Destroy(gameObject);
+            destroyParticle.Play();
+            soundEffects.loseSound();
+            backgroundSound.background.Stop();
+        }
+
         Jump();
     }
 
@@ -40,7 +51,7 @@ public class PlayerControllerX : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Block"))
+        if (collision.gameObject.CompareTag("Block") | collision.gameObject.CompareTag("Ground"))
         {
             Destroy(gameObject);           
             destroyParticle.Play();
