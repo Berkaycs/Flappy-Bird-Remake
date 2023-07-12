@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManagerX : MonoBehaviour
 {
     private PlayerControllerX playerController;
+    private AudioSource congrat;
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI pointText;
@@ -32,6 +33,7 @@ public class GameManagerX : MonoBehaviour
         backgroundSound = GameObject.Find("Background").GetComponent<ParallaxEffectX>();
         scoreText = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
         timer = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
+        congrat = GetComponent<AudioSource>();
 
         highscore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
         score = 0;
@@ -72,6 +74,7 @@ public class GameManagerX : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore", score);
             highscore.text = "HighScore: " + score;
+            congrat.Play();
         }
     }
     // Reset HighScore
