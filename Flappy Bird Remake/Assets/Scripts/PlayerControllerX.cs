@@ -14,7 +14,7 @@ public class PlayerControllerX : MonoBehaviour
 
     public float speedForce = 10;
     private float topBound = 5;
-    public bool gameOver = false;
+    public bool isGameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +31,7 @@ public class PlayerControllerX : MonoBehaviour
     {
         if (transform.position.y > topBound)
         {
-            gameOver = true;
+            isGameOver = true;
             Debug.Log("Top bound is exceed");
             Destroy(gameObject);
             destroyParticle.Play();
@@ -57,7 +57,7 @@ public class PlayerControllerX : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Block") | collision.gameObject.CompareTag("Ground"))
         {
-            gameOver = true;
+            isGameOver = true;
             Destroy(gameObject);           
             destroyParticle.Play();
             soundEffects.loseSound();

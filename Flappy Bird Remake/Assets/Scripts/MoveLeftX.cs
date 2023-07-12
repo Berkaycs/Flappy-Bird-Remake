@@ -7,13 +7,6 @@ public class MoveLeftX : MonoBehaviour
     public float moveSpeed = 10;
     private float leftBound = -14;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);

@@ -7,18 +7,6 @@ public class AudioX : MonoBehaviour
     public AudioSource source;
     public AudioClip coin, lose, trigger;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void coinSound()
     {
         source.clip = coin;
