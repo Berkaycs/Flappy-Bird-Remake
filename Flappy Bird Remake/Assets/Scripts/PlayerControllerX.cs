@@ -8,7 +8,7 @@ public class PlayerControllerX : MonoBehaviour
     private Rigidbody2D playerRb;
     private GameManagerX gameManager;
     private AudioX soundEffects;
-    public ParticleSystem destroyParticle;
+    public ParticleSystem explosionParticle;
     private ParallaxEffectX backgroundSound;
     public GameOverScreenX gameOverScreen;
 
@@ -23,7 +23,7 @@ public class PlayerControllerX : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManagerX>();
         soundEffects = GetComponent<AudioX>();
         backgroundSound = GameObject.Find("Background").GetComponent<ParallaxEffectX>();
-        destroyParticle = GameObject.Find("Destroy").GetComponent<ParticleSystem>();
+        explosionParticle = GameObject.Find("Explosion").GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -34,7 +34,7 @@ public class PlayerControllerX : MonoBehaviour
             isGameOver = true;
             Debug.Log("Top bound is exceed");
             Destroy(gameObject);
-            destroyParticle.Play();
+            explosionParticle.Play();
             soundEffects.loseSound();
             backgroundSound.background.Stop();
             gameOverScreen.GameOverScreen();
@@ -59,7 +59,7 @@ public class PlayerControllerX : MonoBehaviour
         {
             isGameOver = true;
             Destroy(gameObject);           
-            destroyParticle.Play();
+            explosionParticle.Play();
             soundEffects.loseSound();
             backgroundSound.background.Stop();
             gameOverScreen.GameOverScreen();

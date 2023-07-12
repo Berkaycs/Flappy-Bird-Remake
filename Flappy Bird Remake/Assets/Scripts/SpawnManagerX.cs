@@ -8,7 +8,7 @@ public class SpawnManagerX : MonoBehaviour
     public GameObject[] coins;  
 
     private Vector2 spawnPositionBlock;
-    private Vector2 spawnPositionCoin;
+    private Vector3 spawnPositionCoin;
 
     private int blockIndex;
     private int coinIndex;
@@ -24,7 +24,7 @@ public class SpawnManagerX : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerControllerX>();
 
         float repeatWidthC = Random.Range(8, 15);
-        float repeatWidthB = Random.Range(0.5f, 2.5f);
+        float repeatWidthB = 1.6f;
 
         InvokeRepeating("spawnBlock", startDelayB, repeatWidthB);
         InvokeRepeating("spawnCoin", startDelayC, repeatWidthC);
@@ -48,7 +48,7 @@ public class SpawnManagerX : MonoBehaviour
         coinIndex = Random.Range(0, 5);
         float randomX = Random.Range(2,13);
         float randomY = Random.Range(-1,4);
-        spawnPositionCoin = new Vector2();
+        spawnPositionCoin = new Vector3(randomX, randomY, -0.1f);
         Instantiate(coins[coinIndex], spawnPositionCoin, coins[coinIndex].transform.rotation);
     }
 }

@@ -9,6 +9,8 @@ public class GameManagerX : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI pointText;
+    public TextMeshProUGUI highscore;
+
 
     public int score;
     private int value = 0;
@@ -30,6 +32,8 @@ public class GameManagerX : MonoBehaviour
         backgroundSound = GameObject.Find("Background").GetComponent<ParallaxEffectX>();
         scoreText = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
         timer = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
+
+        highscore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
         score = 0;
         scoreText.text = "Score: " + score;
         pointText.text = score + " POINTS";
@@ -45,15 +49,39 @@ public class GameManagerX : MonoBehaviour
         time += Time.deltaTime;
         DisplayTime(time);
     }
-
+    // Adjusting Score and HighScore
     public void AddScore(int value)
     {
         score += value;
+        //scoreText.text = score.ToString();
         scoreText.text = "Score: " + score;
         pointText.text = score + " POINTS";
 
+        /*
+        if (score > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+            highscore.text = "HighScore: " + score;  //.ToString();
+        }
+        */
+        HighScore();
+    }
+    public void HighScore() 
+    {
+        if (score > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+            highscore.text = "HighScore: " + score;
+        }
+    }
+    // Reset HighScore
+    public void Reset()
+    {
+        PlayerPrefs.DeleteKey("HighScore");
+        highscore.text = "HighScore: " + 0;
     }
 
+    // Pause screen
     private void CheckForPause()
     {
         if (!paused)
@@ -72,7 +100,7 @@ public class GameManagerX : MonoBehaviour
             backgroundSound.background.Play();
         }
     }
-
+    // Timer
     void DisplayTime(float timeToDisplay)
     {
         if (playerController.isGameOver == false)
