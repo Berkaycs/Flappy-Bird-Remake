@@ -10,10 +10,11 @@ public class PlayerControllerX : MonoBehaviour
     private AudioX soundEffects;
     public ParticleSystem destroyParticle;
     private ParallaxEffectX backgroundSound;
+    public GameOverScreenX gameOverScreen;
 
     public float speedForce = 10;
     private float topBound = 5;
-    public bool gameOver = true;
+    public bool gameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -30,11 +31,14 @@ public class PlayerControllerX : MonoBehaviour
     {
         if (transform.position.y > topBound)
         {
+            gameOver = true;
             Debug.Log("Top bound is exceed");
             Destroy(gameObject);
             destroyParticle.Play();
             soundEffects.loseSound();
             backgroundSound.background.Stop();
+            gameOverScreen.GameOverScreen();
+            
         }
 
         Jump();
@@ -53,10 +57,12 @@ public class PlayerControllerX : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Block") | collision.gameObject.CompareTag("Ground"))
         {
+            gameOver = true;
             Destroy(gameObject);           
             destroyParticle.Play();
             soundEffects.loseSound();
             backgroundSound.background.Stop();
+            gameOverScreen.GameOverScreen();
             Debug.Log("Collided with the block");
         }
     }
@@ -109,5 +115,10 @@ public class PlayerControllerX : MonoBehaviour
             Debug.Log("Coin is triggered");
             gameManager.AddScore(3);
         }
+    }
+
+    private void GameOver()
+    {
+        gameOverScreen.gameObject.SetActive(true);
     }
 }

@@ -6,13 +6,17 @@ using UnityEngine;
 public class GameManagerX : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    public int score = 0;
+    public TextMeshProUGUI pointText;
+    public int score;
+    private int value = 0;
 
     // Start is called before the first frame updateq
     void Start()
     {
         scoreText = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
+        score = 0;
         scoreText.text = "Score: " + score;
+        pointText.text = score + " POINTS";
     }
 
     // Update is called once per frame
@@ -25,5 +29,7 @@ public class GameManagerX : MonoBehaviour
     {
         score += value;
         scoreText.text = "Score: " + score;
+        pointText.text = score + " POINTS";
+
     }
 }

@@ -16,11 +16,15 @@ public class SpawnManagerX : MonoBehaviour
     private float startDelayB = 1.5f;
     private float startDelayC = 5f;
 
+    private PlayerControllerX playerController;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerController = GameObject.Find("Player").GetComponent<PlayerControllerX>();
         float repeatWidthC = Random.Range(8,15);
         float repeatWidthB = Random.Range(0.5f,2.5f);
+
         InvokeRepeating("spawnBlock", startDelayB, repeatWidthB);
         InvokeRepeating("spawnCoin", startDelayC, repeatWidthC);
     }
