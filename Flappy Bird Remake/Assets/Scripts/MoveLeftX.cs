@@ -17,3 +17,23 @@ public class MoveLeftX : MonoBehaviour
         }
     }
 }
+
+    // New way to destroy out of boundaries object
+
+/*
+private float leftEdge;
+
+private void Start()
+{
+    leftEdge = Camera.main.ScreenToWorldPoint(Vector2.zero).x -  1f;
+}
+
+private void Update()
+{
+    if (transform.position.x < leftEdge)
+    {
+        Destroy(gameObject);
+    }
+}
+*/
+
