@@ -7,3 +7,9 @@ https://assetstore.unity.com/packages/2d/characters/cute-birds-89649
 https://freesound.org/people/Higgs01/sounds/428156/
 https://freesound.org/people/Seth_Makes_Sounds/sounds/670039/
 https://freesound.org/people/Jerimee/sounds/535890/
+
+*Gameplay*
+
+Space for jump
+P for pausing the game
+
